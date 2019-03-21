@@ -98,8 +98,8 @@
     <Compile Include="ViewModels\ProbeSectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Controls\PulseLabel.cs" />
-    <Compile Include="Views\Controls\QuickShadowSlider.cs" />
-    <Compile Include="Views\Controls\QuickSlider.cs" />
+    <Compile Include="Views\Controls\CompoundSlider.cs" />
+    <Compile Include="Views\Controls\EnhancedSlider.cs" />
     <Compile Include="Views\Controls\ReversalLabel.cs" />
     <Compile Include="Views\Controls\SwitchTextBox.cs" />
     <Compile Include="Views\Converters\BooleanInverseConverter.cs" />
