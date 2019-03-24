@@ -97,9 +97,11 @@
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="ViewModels\ProbeSectionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\Controls\PulseLabel.cs" />
+    <Compile Include="Views\Behaviors\ParentMouseDownAction.cs" />
     <Compile Include="Views\Controls\CompoundSlider.cs" />
     <Compile Include="Views\Controls\EnhancedSlider.cs" />
+    <Compile Include="Views\Controls\ItemSlider.cs" />
+    <Compile Include="Views\Controls\PulseLabel.cs" />
     <Compile Include="Views\Controls\ReversalLabel.cs" />
     <Compile Include="Views\Controls\SwitchTextBox.cs" />
     <Compile Include="Views\Converters\BooleanInverseConverter.cs" />
