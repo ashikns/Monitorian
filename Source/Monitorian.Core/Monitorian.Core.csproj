@@ -108,6 +108,7 @@
     <Compile Include="Views\Controls\SwitchTextBox.cs" />
     <Compile Include="Views\Converters\BooleanInverseConverter.cs" />
     <Compile Include="Views\Converters\BooleanToVisibilityTurnConverter.cs" />
+    <Compile Include="Views\Converters\NonValueTypeToVisibilityConverter.cs" />
     <Compile Include="Views\Converters\VisibilityInverseConverter.cs" />
     <Compile Include="Views\Converters\VisibilityToBooleanFilterConverter.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
