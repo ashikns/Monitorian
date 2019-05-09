@@ -82,6 +82,7 @@ namespace ScreenFrame.Movers
 		private const int WM_WINDOWPOSCHANGING = 0x0046;
 		private const int WM_WINDOWPOSCHANGED = 0x0047;
 		private const int WM_DPICHANGED = 0x02E0;
+		private const int WM_ACTIVATEAPP = 0x001C;
 
 		/// <summary>
 		/// Handles window messages.
@@ -103,6 +104,11 @@ namespace ScreenFrame.Movers
 				case WM_DPICHANGED:
 					//Debug.WriteLine(nameof(WM_DPICHANGED));
 					HandleDpiChanged(hwnd, msg, wParam, lParam, ref handled);
+					break;
+
+				case WM_ACTIVATEAPP:
+					//Debug.WriteLine(nameof(WM_ACTIVATEAPP));
+					HandleActivateApp(hwnd, msg, wParam, lParam, ref handled);
 					break;
 			}
 			return IntPtr.Zero;
@@ -136,5 +142,37 @@ namespace ScreenFrame.Movers
 			VisualTreeHelper.SetRootDpi(_window, dpi);
 			handled = true;
 		}
+
+		/// <summary>
+		/// Occurs when the application to which the window belongs is activated.
+		/// </summary>
+		public event EventHandler OnAppActivated;
+
+		/// <summary>
+		/// Occurs when the application to which the window belongs is deactivated. 
+		/// </summary>
+		public event EventHandler OnAppDeactivated;
+
+		/// <summary>
+		/// Handles Activate App event.
+		/// </summary>
+		protected virtual void HandleActivateApp(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+		{
+			var isActivated = Convert.ToBoolean(wParam.ToInt32());
+			if (isActivated)
+			{
+				OnAppActivated?.Invoke(_window, EventArgs.Empty);
+			}
+			else
+			{
+				OnAppDeactivated?.Invoke(_window, EventArgs.Empty);
+			}
+		}
+
+		/// <summary>
+		/// Whether the window is foreground window
+		/// </summary> 
+		/// <returns>True if foreground</returns>
+		public bool IsForeground() => WindowHelper.IsForegroundWindow(_window);
 	}
 }
