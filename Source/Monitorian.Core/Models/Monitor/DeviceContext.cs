@@ -216,7 +216,7 @@ namespace Monitorian.Core.Models.Monitor
 			// DISPLAY indicates display device.
 			// {e6f07b5f-ee97-4a90-b076-33f57bf4eaa7} means GUID_DEVINTERFACE_MONITOR.
 
-			var index = deviceId.IndexOf("DISPLAY", StringComparison.Ordinal);
+			int index = deviceId.IndexOf("DISPLAY", StringComparison.Ordinal);
 			if (index < 0)
 				return null;
 
