@@ -126,9 +126,17 @@
     <Compile Include="Views\WindowEffect.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BrightnessWriter\BrightnessWriter.csproj">
+      <Project>{dd630377-683f-44b0-9811-8346d119363e}</Project>
+      <Name>BrightnessWriter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Monitorian.Supplement\Monitorian.Supplement.csproj">
       <Project>{6e338214-e33c-4014-9bdd-6d914e6c536d}</Project>
       <Name>Monitorian.Supplement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NamedPipeWrapper\NamedPipeWrapper.csproj">
+      <Project>{5b2f2684-40f4-429f-a46b-b2fbf0be2c02}</Project>
+      <Name>NamedPipeWrapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\ScreenFrame\ScreenFrame.csproj">
       <Project>{edd1c1b9-c241-4d89-8334-0d29f95c2445}</Project>

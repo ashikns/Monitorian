@@ -127,7 +127,7 @@ namespace Monitorian.Core.ViewModels
 			SetBrightness(brightness);
 		}
 
-		private bool SetBrightness(int brightness)
+		public bool SetBrightness(int brightness)
 		{
 			if (_monitor.SetBrightness(brightness))
 			{

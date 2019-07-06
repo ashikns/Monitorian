@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BrightnessWriter;
+using Monitorian.Core.Models;
+using NamedPipeWrapper;
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
-
-using Monitorian.Core.Models;
 
 namespace Monitorian.Core.ViewModels
 {
@@ -20,6 +18,10 @@ namespace Monitorian.Core.ViewModels
 		{
 			this._controller = controller ?? throw new ArgumentNullException(nameof(controller));
 			this._controller.ScanningChanged += OnScanningChanged;
+
+			PipeServer = new NamedPipeServer<PipeMessage>("Monitorian", new PipeMessageSerializer());
+			PipeServer.ClientMessage += PipeMessageReceived;
+			PipeServer.Start();
 		}
 
 		public ListCollectionView MonitorsView
@@ -77,5 +79,21 @@ namespace Monitorian.Core.ViewModels
 		}
 
 		public bool IsScanning { get; private set; }
+
+		private NamedPipeServer<PipeMessage> PipeServer { get; }
+
+		private void PipeMessageReceived(NamedPipeConnection<PipeMessage, PipeMessage> connection, PipeMessage message)
+		{
+			if (message == null) { return; }
+
+			try
+			{
+				_controller.Monitors[message.Index].SetBrightness(message.Value);
+			}
+			catch (Exception e)
+			{
+				LogService.RecordException(e);
+			}
+		}
 	}
 }
